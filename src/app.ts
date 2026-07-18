@@ -7,6 +7,7 @@ import globalErrorHandler from "./middlewares/globalErrorHandler";
 import notFound from "./middlewares/notFound";
 import { AuthRoutes } from "./modules/auth/auth.route";
 import { UserRoutes } from "./modules/user/user.route";
+import { PropertyRoutes } from "./modules/property/property.routes";
 const app : Application = express();
 
 app.use(cors({
@@ -24,6 +25,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api', AuthRoutes);
 app.use('/api/admin', UserRoutes);
+app.use('/api/properties', PropertyRoutes);
 
 app.use(globalErrorHandler);
 app.use(notFound);
