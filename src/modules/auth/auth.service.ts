@@ -157,9 +157,27 @@ const changePassword = async (
   return null;
 };
 
+const getMe = async (userId: string) => {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This user no longer exists.');
+  }
+
+  if (user.status === 'BANNED') {
+    throw new AppError(httpStatus.FORBIDDEN, 'This account has been banned.');
+  }
+
+  const { password, ...userWithoutPassword } = user;
+
+
+  return userWithoutPassword;
+};
+
 export const AuthService = {
   registerUser,
   loginUser,
   refreshToken,
   changePassword,
+  getMe,
 };
