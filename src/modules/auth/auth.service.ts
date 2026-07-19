@@ -77,9 +77,6 @@ const loginUser = async (payload: TLoginPayload) => {
     throw new AppError(httpStatus.NOT_FOUND, 'No account found with this email.');
   }
 
-  // if (user.status === 'BLOCKED' || user.status === 'DELETED') {
-  //   throw new AppError(httpStatus.FORBIDDEN, 'This account has been blocked or deleted.');
-  // }
 
   const isPasswordValid = await bcrypt.compare(payload.password, user.password);
 
