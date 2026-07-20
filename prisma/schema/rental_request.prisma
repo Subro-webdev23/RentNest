@@ -2,8 +2,6 @@ enum RentalStatus {
   PENDING
   APPROVED
   REJECTED
-  ACTIVE
-  COMPLETED
 }
 
 model RentalRequest {
