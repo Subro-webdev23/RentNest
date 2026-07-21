@@ -57,7 +57,25 @@ const updateUserStatusIntoDB = async (
   return result;
 };
 
+const getAllPropertiesFromDB = async () => {
+  const result = await prisma.property.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return result;
+};
+
+const getAllRentalsFromDB = async () => {
+  const result = await prisma.rentalRequest.findMany({
+    orderBy: { createdAt: 'desc' },
+  });
+
+  return result;
+};
+
 export const UserService = {
   getAllUsersFromDB,
   updateUserStatusIntoDB,
+  getAllPropertiesFromDB,
+  getAllRentalsFromDB,
 };

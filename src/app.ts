@@ -9,6 +9,7 @@ import { AuthRoutes } from "./modules/auth/auth.route";
 import { UserRoutes } from "./modules/user/user.route";
 import { PropertyRoutes } from "./modules/property/property.routes";
 import { CategoryRoutes } from "./modules/category/category.routes";
+import { LandlordRentalRequestRoutes } from "./modules/rentalRequest/rentalRequest.routes";
 const app : Application = express();
 
 app.use(cors({
@@ -26,8 +27,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api', AuthRoutes);
 app.use('/api/admin', UserRoutes);
-app.use('/api/properties', PropertyRoutes);
+app.use('/api', PropertyRoutes);
 app.use('/api/categories', CategoryRoutes);
+app.use('/api', LandlordRentalRequestRoutes);
 
 app.use(globalErrorHandler);
 app.use(notFound);
