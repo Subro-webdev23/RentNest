@@ -9,4 +9,8 @@ router.get('/users', auth(Role.ADMIN), UserController.getAllUsers);
 
 router.patch('/users/:id', auth(Role.ADMIN), UserController.updateUserStatus);
 
+router.get('/rentals', auth(Role.ADMIN), UserController.getAllRentals);
+
+router.get('/properties', auth(Role.ADMIN), UserController.getAllProperties);
+
 export const UserRoutes = router;

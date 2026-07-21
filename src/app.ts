@@ -29,7 +29,7 @@ app.use('/api', AuthRoutes);
 app.use('/api/admin', UserRoutes);
 app.use('/api', PropertyRoutes);
 app.use('/api/categories', CategoryRoutes);
-app.use('/api/landlord/rentals', LandlordRentalRequestRoutes);
+app.use('/api', LandlordRentalRequestRoutes);
 
 app.use(globalErrorHandler);
 app.use(notFound);

@@ -5,8 +5,14 @@ import { Role } from '../../../generated/prisma/client';
 
 const router = express.Router();
 
-router.get('/', auth(Role.LANDLORD), RentalRequestController.getRequestsForLandlord);
+router.get('/landlord/rentals/', auth(Role.LANDLORD), RentalRequestController.getRequestsForLandlord);
 
-router.patch('/:id', auth(Role.LANDLORD), RentalRequestController.updateRequestStatus);
+router.patch('/landlord/rentals/:id', auth(Role.LANDLORD), RentalRequestController.updateRequestStatus);
+
+router.post('/rentals', auth(Role.TENANT), RentalRequestController.createRentalRequest);
+
+router.get('/rentals', auth(Role.TENANT), RentalRequestController.getRequestsForTenant);
+
+router.get('/rentals/:id', auth(Role.TENANT), RentalRequestController.getRequestDetails);
 
 export const LandlordRentalRequestRoutes = router;

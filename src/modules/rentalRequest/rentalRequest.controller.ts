@@ -32,7 +32,50 @@ const updateRequestStatus = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createRentalRequest = catchAsync(async (req: Request, res: Response) => {
+  const tenantId = req.user.userId;
+
+  const result = await RentalRequestService.createRentalRequest(tenantId, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: 'Rental request submitted successfully',
+    data: result,
+  });
+});
+
+const getRequestsForTenant = catchAsync(async (req: Request, res: Response) => {
+  const tenantId = req.user.userId;
+
+  const result = await RentalRequestService.getRequestsForTenant(tenantId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Rental requests retrieved successfully',
+    data: result,
+  });
+});
+
+const getRequestDetails = catchAsync(async (req: Request, res: Response) => {
+  const tenantId = req.user.userId;
+  const { id } = req.params;
+
+  const result = await RentalRequestService.getRequestDetails(tenantId, id as string);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Rental request details retrieved successfully',
+    data: result,
+  });
+});
+
 export const RentalRequestController = {
   getRequestsForLandlord,
   updateRequestStatus,
+  createRentalRequest,
+  getRequestsForTenant,
+  getRequestDetails,
 };

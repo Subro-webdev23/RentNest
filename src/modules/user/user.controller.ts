@@ -29,7 +29,32 @@ const updateUserStatus = catchAsync(async (req: Request, res: Response) => {
   }
 );
 
+
+const getAllRentals = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getAllRentalsFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Rental requests retrieved successfully',
+    data: result,
+  });
+});
+
+const getAllProperties = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getAllPropertiesFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Properties retrieved successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   getAllUsers,
   updateUserStatus,
+  getAllRentals,
+  getAllProperties,
 };
